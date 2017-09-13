@@ -16,3 +16,6 @@ dt {
 dd {
     font-size: 1.2em;
 }
+#buttons {
+    float: right;
+}
