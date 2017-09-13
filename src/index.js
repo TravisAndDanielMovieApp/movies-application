@@ -1,6 +1,6 @@
-const getMovies = require('./getMovies.js');
+const movieAPI = require('./getMovies.js');
 
-getMovies().then((movies) => {
+movieAPI.getMovies().then((movies) => {
   let movieApp = document.getElementById("movieApp");
   let movieAppHTML = "<dl>";
   movies.forEach((movie) => {
@@ -15,3 +15,5 @@ getMovies().then((movies) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.')
 });
 
+movieAPI.addMovie()
+    .then(res => res.json().then((movie) => console.log(movie)));
