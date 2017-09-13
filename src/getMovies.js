@@ -4,3 +4,4 @@ const getMovies = () => {
 };
 
 module.exports = getMovies;
+

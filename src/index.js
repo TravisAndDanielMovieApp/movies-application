@@ -1,20 +1,17 @@
-/**
- * es6 modules and imports
- */
-import sayHello from './hello';
-sayHello('World');
-
-/**
- * require style imports
- */
 const getMovies = require('./getMovies.js');
 
 getMovies().then((movies) => {
-  console.log('Here are all the movies:');
-  movies.forEach(({title, rating, id}) => {
-    console.log(`id#${id} - ${title} - rating: ${rating}`);
+  let movieApp = document.getElementById("movieApp");
+  let movieAppHTML = "<dl>";
+  movies.forEach((movie) => {
+      movieAppHTML += `<dt>${movie.title}</dt><dd>Rating: `
+    for (let i =0; i < movie.rating; i++) {
+        movieAppHTML += '&#9733;';
+      } movieAppHTML += '</dd>';
   });
+  movieAppHTML += "</dl>";
+  movieApp.innerHTML = movieAppHTML;
 }).catch((error) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.')
-  console.log(error);
 });
+
