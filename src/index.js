@@ -1,4 +1,4 @@
-const movieAPI = require('./getMovies.js');
+const movieAPI = require('./movieAPI.js');
 
 function getMovieList() {
     movieAPI.getMovies().then((movies) => {
@@ -16,7 +16,9 @@ function getMovieList() {
         movieAppHTML += "</table>";
         movieApp.innerHTML = movieAppHTML;
 
-        document.getElementById('buttons').style.display = "block";
+        document.getElementById('add-button').style.display = "inline-block";
+        document.getElementById('update-button').style.display = "inline-block";
+        document.getElementById('back-button').style.display = "none";
     }).catch((error) => {
         alert('Oh no! Something went wrong.\nCheck the console for details.')
     });
@@ -69,6 +71,7 @@ function displayAddMovieForm() {
     displayMovieForm("add");
 
     document.getElementById('add-button').style.display = 'none';
+    document.getElementById('back-button').style.display = 'inline-block';
     document.getElementById('add-movie-button').addEventListener('click', addMovie);
 }
 
@@ -76,17 +79,22 @@ document.getElementById('add-button').addEventListener('click', (e) => {
     e.preventDefault();
     displayAddMovieForm();
 });
+
 document.getElementById('update-button').addEventListener('click', (e) => {
     e.preventDefault();
     displayUpdateMovieForm();
 });
 
-function updateMovie(evt) {
+document.getElementById('back-button').addEventListener('click', getMovieList);
+
+function updateMovie(movieID) {
     let form = document.forms.updateMovie;
     let existingMovie = {
         title: form.title.value,
         rating: form.rating.value,
     };
+
+    movieAPI.updateMovie(movieID, existingMovie).then(() => getMovieList());
 }
 
 function displayUpdateMovieForm() {
@@ -104,18 +112,27 @@ function displayUpdateMovieForm() {
              <option>Select Movie</option>
                 ${selectOptions}
             </select>
-            
-            <button id="update-movie-button" type="submit">Update Movie</button>
             </form>`;
 
+        document.getElementById('update-button').style.display = 'none';
+        document.getElementById('add-button').style.display = 'inline-block';
+        document.getElementById('back-button').style.display = 'inline-block';
         appContainer.innerHTML = updateMovieForm;
-        document.getElementById("movieUpdate").addEventListener("change", (e) => {
-            console.log(e.target.value);
+
+        document.getElementById("movieUpdate").addEventListener("change", () => {
             let select = document.forms.updateMovie.movieUpdate;
             let selectedOption = (select[select.selectedIndex]);
             let rating = selectedOption.getAttribute("data-rating");
+
             displayMovieForm("update", selectedOption.innerText, rating);
+
+            document.getElementById('update-movie-button').addEventListener("click", (ev) => {
+                ev.preventDefault();
+                updateMovie(selectedOption.value);
+            });
         });
+            // appContainer.innerHTML += `<button id="test">Test</button>`;
+            // document.getElementById('test').addEventListener('click', updateMovie);
     });
 
 }

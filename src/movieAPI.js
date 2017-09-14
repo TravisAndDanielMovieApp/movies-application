@@ -18,5 +18,20 @@ const addMovie = (newMovie) => {
     return fetch(req);
 };
 
-module.exports = { getMovies, addMovie };
+const updateMovie = (movieID, infoToUpdate) => {
+    let reqOptions = {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            title: infoToUpdate.title,
+            rating: infoToUpdate.rating
+        })
+    };
+
+    let req = new Request(`/api/movies/${movieID}`, reqOptions);
+
+    return fetch(req);
+};
+
+module.exports = { getMovies, addMovie, updateMovie };
 
