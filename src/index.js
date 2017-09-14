@@ -22,7 +22,7 @@ function getMovieList() {
     });
 }
 
-function addMovie (evt) {
+function addMovie(evt) {
     let form = document.forms.addMovie;
     let newMovie = {
         title: form.title.value,
@@ -37,28 +37,36 @@ function addMovie (evt) {
     });
 }
 
-function displayAddMovieForm() {
+function displayMovieForm(method, title, rating) {
     let appContainer = document.getElementById('movieApp');
-    let addMovieForm = `<form name="addMovie">
+    let movieForm = `<form name="${method}Movie">
     <label for="title">Title: </label>
-    <input type="text" id="title" placeholder="New Movie">
+    <input name="title" type="text" id="title" placeholder="Movie Title">
 
     <h4>Rating: </h4>
-    <input type="radio" name="rating" id="rating-0" value="1">
-    <label for="rating-0">1</label>
-    <input type="radio" id="rating-1" name="rating" value="2">
-    <label for="rating-1">2</label>
-    <input type="radio" id="rating-2" name="rating" value="3">
-    <label for="rating-2">3</label>
-    <input type="radio" id="rating-3" name="rating" value="4">
-    <label for="rating-3">4</label>
-    <input type="radio" id="rating-4" name="rating" value="5">
-    <label for="rating-4">5</label>
+    <input type="radio" name="rating" id="rating-1" value="1">
+    <label for="rating-1">1</label><br>
+    <input type="radio" id="rating-2" name="rating" value="2">
+    <label for="rating-2">2</label><br>
+    <input type="radio" id="rating-3" name="rating" value="3">
+    <label for="rating-3">3</label><br>
+    <input type="radio" id="rating-4" name="rating" value="4">
+    <label for="rating-4">4</label><br>
+    <input type="radio" id="rating-5" name="rating" value="5">
+    <label for="rating-5">5</label><br>
 
-    <button id="add-movie-button" type="submit">Add Movie</button>
+    <button id="${method}-movie-button" type="submit">${method} Movie</button>
   </form>`;
+    appContainer.innerHTML = movieForm;
+    if (method ==="update") {
+        document.getElementById(`rating-${rating}`).checked = true;
+        document.forms.updateMovie.title.value = title;
+    }
+}
 
-    appContainer.innerHTML = addMovieForm;
+function displayAddMovieForm() {
+
+    displayMovieForm("add");
 
     document.getElementById('add-button').style.display = 'none';
     document.getElementById('add-movie-button').addEventListener('click', addMovie);
@@ -68,5 +76,48 @@ document.getElementById('add-button').addEventListener('click', (e) => {
     e.preventDefault();
     displayAddMovieForm();
 });
+document.getElementById('update-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    displayUpdateMovieForm();
+});
+
+function updateMovie(evt) {
+    let form = document.forms.updateMovie;
+    let existingMovie = {
+        title: form.title.value,
+        rating: form.rating.value,
+    };
+}
+
+function displayUpdateMovieForm() {
+    movieAPI.getMovies().then(movies => {
+        let appContainer = document.getElementById('movieApp');
+        let selectOptions = "";
+        movies.forEach(movie => {
+            selectOptions += `<option value="${movie.id}" data-rating="${movie.rating}">${movie.title}</option>`;
+        });
+
+
+        let updateMovieForm = `<form name="updateMovie">
+             <label for="title">Title: </label>
+             <select name="movieUpdate" id="movieUpdate">
+             <option>Select Movie</option>
+                ${selectOptions}
+            </select>
+            
+            <button id="update-movie-button" type="submit">Update Movie</button>
+            </form>`;
+
+        appContainer.innerHTML = updateMovieForm;
+        document.getElementById("movieUpdate").addEventListener("change", (e) => {
+            console.log(e.target.value);
+            let select = document.forms.updateMovie.movieUpdate;
+            let selectedOption = (select[select.selectedIndex]);
+            let rating = selectedOption.getAttribute("data-rating");
+            displayMovieForm("update", selectedOption.innerText, rating);
+        });
+    });
+
+}
 
 getMovieList();
