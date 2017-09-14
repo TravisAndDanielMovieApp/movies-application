@@ -4,18 +4,17 @@ const getMovies = () => {
 };
 
 const addMovie = (newMovie) => {
-
-
     let reqOtions = {
-        method: 'post',
+        method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify( {
-            "title": "Star Wars: The Force Awakens",
-            "rating": 2
-        } )
+        body: JSON.stringify({
+            title: newMovie.title,
+            rating: newMovie.rating
+        })
     };
+
     let req = new Request("/api/movies", reqOtions);
-console.log(req);
+
     return fetch(req);
 };
 

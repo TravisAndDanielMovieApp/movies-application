@@ -18,4 +18,10 @@ dd {
 }
 #buttons {
     float: right;
+    display: none;
+}
+
+.rotated-arrow {
+    transform: rotate(180deg);
+    display: inline-block;
 }

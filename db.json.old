@@ -9,16 +9,6 @@
       "title": "Star Wars: A New Hope",
       "rating": "5",
       "id": 2
-    },
-    {
-      "title": "Saving Private Ryan",
-      "rating": "4",
-      "id": 3
-    },
-    {
-      "title": "We Were Soldiers",
-      "rating": "5",
-      "id": 4
     }
   ]
 }
