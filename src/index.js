@@ -11,17 +11,30 @@ function getMovieList() {
                 stars += '&#9733;';
             }
 
-            movieAppHTML += `<tr><td>${movie.title}</td><td>${stars}</td><td><a href="#">Delete</a></td></tr>`;
+            movieAppHTML += `<tr><td>${movie.title}</td><td>${stars}</td><td><a class="deleteButton" data-id="${movie.id}" href="#">Delete</a></td></tr>`;
         });
         movieAppHTML += "</table>";
         movieApp.innerHTML = movieAppHTML;
 
+        let deleteButtons = document.getElementsByClassName("deleteButton");
+        for (let i=0; i < deleteButtons.length; i++){
+            deleteButtons[i].addEventListener("click", deleteMovie);
+        }
         document.getElementById('add-button').style.display = "inline-block";
         document.getElementById('update-button').style.display = "inline-block";
         document.getElementById('back-button').style.display = "none";
     }).catch((error) => {
         alert('Oh no! Something went wrong.\nCheck the console for details.')
     });
+}
+
+function deleteMovie(evt) {
+    evt.preventDefault();
+    let dataID = evt.target.getAttribute("data-id");
+    movieAPI.deleteMovie(dataID).then(() => {
+        getMovieList();
+    });
+
 }
 
 function addMovie(evt) {

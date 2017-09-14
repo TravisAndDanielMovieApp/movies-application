@@ -33,5 +33,14 @@ const updateMovie = (movieID, infoToUpdate) => {
     return fetch(req);
 };
 
-module.exports = { getMovies, addMovie, updateMovie };
+const deleteMovie = (movieID) => {
+    let reqOptions = {
+        method: "DELETE"
+    };
+    let req = new Request(`/api/movies/${movieID}`, reqOptions);
+
+    return fetch(req);
+};
+
+module.exports = { getMovies, addMovie, updateMovie, deleteMovie };
 

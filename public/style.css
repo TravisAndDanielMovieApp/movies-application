@@ -1,24 +1,65 @@
-/*html, body {*/
-    /*height: 100%;*/
-/*}*/
-
-/*.container {*/
-    /*position: relative;*/
-    /*top: 50%;*/
-    /*transform: translateY(-100%);*/
-    /*text-align: center;*/
-/*}*/
-
 dt {
     font-weight: bold;
     font-size: 2em;
 }
+body {
+    background-color: lightgray;
+}
+.container {
+    width:100%;
+    height:100%;
+}
+table {
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+}
+td, th {
+    padding: .2em 1em;
+    width: 15em;
+}
+tr:nth-child(even) {
+    background-color: white;
+}
+#titleDiv {
+    text-align: center;
+    background-color: black;
+    color: #fffb00;
+}
+h1 {
+    font-size: 4em;
+    font-family: 'Poller One', cursive;
+    margin-top: 0;
+}
+h2 {
+    font-size: 3em;
+    font-family: 'Poller One', cursive;
+}
 dd {
     font-size: 1.2em;
 }
-#buttons {
+#buttons button {
     float: right;
-    /*display: none;*/
+    /*width: 13em;*/
+    margin: 1em;
+    font-size: 1.3em;
+    padding: .6em;
+    line-height: 1.3em;
+}
+#buttons {
+    overflow: hidden;
+}
+#movieApp {
+    font-size: 1.5em;
+    text-align: center;
+}
+#add-button {
+    display: none;
+}
+#update-button {
+    display: none;
+}
+#back-button {
+    display: none;
 }
 
 .rotated-arrow {
@@ -29,3 +70,4 @@ dd {
 #update-movie-button, #add-movie-button {
     text-transform: capitalize;
 }
+
