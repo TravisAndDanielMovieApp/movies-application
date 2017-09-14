@@ -25,3 +25,7 @@ dd {
     transform: rotate(180deg);
     display: inline-block;
 }
+
+#update-movie-button, #add-movie-button {
+    text-transform: capitalize;
+}
