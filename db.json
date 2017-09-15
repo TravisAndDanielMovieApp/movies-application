@@ -2,18 +2,13 @@
   "movies": [
     {
       "title": "Star Wars: A New Hope",
-      "rating": "5",
-      "id": 2
-    },
-    {
-      "title": "Space Jam",
       "rating": "4",
-      "id": 3
+      "id": 2
     },
     {
       "title": "Sharknado 5: Global Swarming",
       "rating": "5",
-      "id": 4
+      "id": 3
     }
   ]
 }

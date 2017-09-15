@@ -11,16 +11,35 @@
 
 <div class="container">
     <div id="titleDiv">
-        <h1>Movie Rating Application</h1>
-        <h2>Cleaver Sub-Header</h2>
+        <div id="headerImageLeft">
+            <img src="img/movie_popcorn.png" alt="POPCORN!!">
+        </div>
+        <div id="headerTitles">
+            <h1>Monkey Business LLC</h1>
+            <h2>Movie Rating Application</h2>
+        </div>
+        <div id="headerImageRight">
+            <img src="img/movie_popcorn.png" alt="POPCORN!!">
+        </div>
     </div>
     <div id="buttons">
         <button id="add-button">&plus; Add Movie</button>
         <button id="update-button">&#10227; Update Existing Movie</button>
         <button id="back-button"><span class="rotated-arrow">&#10132;</span> View Movie Review List</button>
     </div>
-    <div id="movieApp">
-        <h3>Loading...</h3>
+    <div>
+        <div>
+            <select id="sort">
+                <option value="-1" selected disabled>Sort-By:</option>
+                <option value="1">Name A to Z</option>
+                <option value="2">Name Z to A</option>
+                <option value="3">Rating Low to High</option>
+                <option value="4">Rating High to Low</option>
+            </select>
+        </div>
+        <div id="movieApp">
+
+        </div>
     </div>
 </div>
 
