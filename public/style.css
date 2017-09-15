@@ -5,6 +5,9 @@ dt {
 body {
     background-color: lightgray;
 }
+input[type=text]{
+    font-size: 1em;
+}
 .container {
     width:100%;
     height:100%;
@@ -24,6 +27,7 @@ tr:nth-child(even) {
     text-align: center;
     background-color: black;
     color: #fffb00;
+    overflow: hidden;
 }
 h1 {
     font-size: 4em;
@@ -61,7 +65,9 @@ dd {
 #back-button {
     display: none;
 }
-
+#sort {
+    display: none;
+}
 .rotated-arrow {
     transform: rotate(180deg);
     display: inline-block;
@@ -71,3 +77,34 @@ dd {
     text-transform: capitalize;
 }
 
+.form-title {
+    text-transform: capitalize;
+}
+.movie-form {
+    text-align: left;
+    margin-left: 20em;
+}
+.movie-form button {
+    margin: 1em;
+    font-size: 1em;
+    /*padding: .6em;*/
+    line-height: 1em;
+}
+#movieUpdate {
+    font-size: 1em;
+}
+#headerImageLeft {
+    float: left;
+    width: 25%;
+}
+#headerImageRight {
+    float: right;
+    width: 25%;
+}
+#headerTitles {
+    width: 50%;
+    float: left;
+}
+#titleDiv img {
+    max-width: 100%;
+}
