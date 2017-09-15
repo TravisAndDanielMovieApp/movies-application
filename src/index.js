@@ -22,7 +22,9 @@ function getMovieList() {
             movieAppHTML += `<tr class="movieRow"><td>${movie.title}</td><td>${stars}</td><td><a class="deleteButton" data-id="${movie.id}" href="#">Delete</a></td></tr>`;
         });
         movieAppHTML += "</tbody></table>";
-        document.getElementById('sort').style.display = "inline-block";
+        // LOADS OUR SELECT, WERE NOT READY FOR THAT!! NEED TO MAKE FUNCTIONALITY
+        // document.getElementById('sort').style.display = "inline-block";
+        document.getElementById('dontPress').style.display = "inline-block";
         movieApp.innerHTML = movieAppHTML;
 
         let deleteButtons = document.getElementsByClassName("deleteButton");
@@ -165,6 +167,12 @@ function displayUpdateMovieForm() {
     });
 
 }
+
+document.getElementById("dontPress").addEventListener("click", function() {
+    let dontClick = document.getElementById("movieApp");
+    dontClick.innerHTML = "<img src='img/dontPress.gif'>";
+    document.getElementById("dontPress").style.display = "none";
+});
 
 document.getElementById("sort").addEventListener("change", (evt) => {
     let movieRows = document.getElementsByClassName("movieRow");
